@@ -34,7 +34,9 @@ For this example, use /users endpoint.
 
 Convert JSON Response to Java 
 ------------------------------
-If you have the response string, use it in http://www.jsonschema2pojo.org/ to convert to POJO.
+If you have the response string, use it in http://www.jsonschema2pojo.org/ to convert to POJO and either
+- download the zip and paste it in the project's model package(create model package to place these POJO classes)
+- copy and paste the generated POJO class code to the respective class in Android Studio.
 
 Define end point in an interface
 ------------------------------
