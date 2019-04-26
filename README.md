@@ -36,8 +36,37 @@ Convert JSON Response to Java
 ------------------------------
 If you have the response string, use it in http://www.jsonschema2pojo.org/ to convert to POJO.
 
+Define end point in an interface
+------------------------------
+Create an ApiInterface file containing the end point.
+```java
+    @GET("users")
+    Call<List<User>> getUsers();
+```
 
+If you want to get the response in an Activity, then define a method getUsers() and call it.
+```java
+private void getUsers() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
- [1]: https://square.github.io/retrofit/
- [2]: https://search.maven.org/remote_content?g=com.squareup.retrofit2&a=retrofit&v=LATEST
- [snap]: https://oss.sonatype.org/content/repositories/snapshots/
+        ApiInterface service = retrofit.create(ApiInterface.class);
+
+        Call<List<User>> repos = service.getUsers();
+        repos.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                Toast.makeText(MainActivity.this, "here", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+
+            }
+        });
+    }
+```
+
+Place a breakpoint in the line containing the Toast, and view the response variable.
