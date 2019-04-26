@@ -3,45 +3,39 @@ Retrofit
 
 Type-safe HTTP client for Android and Java by Square, Inc.
 
-For more information please see [the website][1].
-
-
 Download
 --------
 
-Download [the latest JAR][2] or grab from Maven central at the coordinates `com.squareup.retrofit2:retrofit:2.5.0`.
-
-Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
-
+Add the following line to app level build.gradle file:
+```groovy
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+```
 Retrofit requires at minimum Java 7 or Android 2.3.
 
+Among many converters provided, we can use gson converter. 
 
-R8 / ProGuard
--------------
+Add the following line to app level build.gradle file:
+```groovy
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+```
 
-If you are using R8 the shrinking and obfuscation rules are included automatically.
+Permission
+----------
+Add the following line to AndroidManifest.xml outside the application tag:
+```xml
+    <uses-permission android:name="android.permission.INTERNET"/>
+```
 
-ProGuard users must manually add the options from
-[this file](https://github.com/square/retrofit/blob/master/retrofit/src/main/resources/META-INF/proguard/retrofit2.pro).
-(Note: You might also need rules for OkHttp and Okio which are dependencies of this library)
+API
+------------------------------
+If you have an API already, use it. Else you can create a placeholder api from https://jsonplaceholder.typicode.com/
+For this example, use /users endpoint.
 
 
-License
-=======
+Convert JSON Response to Java 
+------------------------------
+If you have the response string, use it in http://www.jsonschema2pojo.org/ to convert to POJO.
 
-    Copyright 2013 Square, Inc.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
 
 
  [1]: https://square.github.io/retrofit/
